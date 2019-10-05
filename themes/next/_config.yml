@@ -618,8 +618,8 @@ comments:
 
 # Disqus
 disqus:
-  enable: false
-  shortname:
+  enable: true
+  shortname: xinping-blog
   count: true
   lazyload: false
 
