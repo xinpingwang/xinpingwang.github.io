@@ -57,28 +57,33 @@
   };
 </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="What&#39;s Blog">
-<meta property="og:url" content="https://xinpingwang.github.io/index.html">
+  <meta name="description" content="计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。 通过传统的编程方式，没有哪个程序员可以设计出一个识别「猫」的程序，但是，通过">
+<meta name="keywords" content="machine learning framework">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手实现机器学习框架——开篇">
+<meta property="og:url" content="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/index.html">
 <meta property="og:site_name" content="What&#39;s Blog">
+<meta property="og:description" content="计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。 通过传统的编程方式，没有哪个程序员可以设计出一个识别「猫」的程序，但是，通过">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-10-08T14:21:27.943Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="What&#39;s Blog">
-  <link rel="canonical" href="https://xinpingwang.github.io/">
+<meta name="twitter:title" content="动手实现机器学习框架——开篇">
+<meta name="twitter:description" content="计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。 通过传统的编程方式，没有哪个程序员可以设计出一个识别「猫」的程序，但是，通过">
+  <link rel="canonical" href="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false,
+    isHome: false,
+    isPost: true,
     isPage: false,
     isArchive: false
   };
 </script>
 
-  <title>What's Blog</title>
+  <title>动手实现机器学习框架——开篇 | What's Blog</title>
   
 
 
@@ -182,10 +187,11 @@
         <div class="content-wrap">
             
 
-          <div id="content" class="content page-home">
+          <div id="content" class="content page-post-detail">
             
-  <section id="posts" class="posts-expand">
-      
+
+  <div id="posts" class="posts-expand">
+    
 
   <article class="post" itemscope itemtype="http://schema.org/Article">
   
@@ -204,9 +210,8 @@
       <meta itemprop="name" content="What's Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/10/06/implement-a-machine-learning-framework/" class="post-title-link" itemprop="url">动手实现机器学习框架——开篇</a>
+        <h1 class="post-title" itemprop="name headline">动手实现机器学习框架——开篇
+
           
         </h1>
 
@@ -262,245 +267,86 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。</p>
+        <p>计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。</p>
 <p>通过传统的编程方式，没有哪个程序员可以设计出一个识别「猫」的程序，但是，通过机器学习可以有效解决这个问题。可以说，机器学习是解决这类问题的一个非常棒的思路。随着产业的发展，也有很多同学或者开发者开始转向机器学习领域，相信大家在入门的时候经常可以看到，N 行代码实现 ** 之类的文章，只要认真跟着做，几乎都可以获得预期的结果。</p>
 <p>我认为这些看起来很简单的代码，要归功于 TensorFlow、PyTorch、Caffe 等机器学习框架，正是框架为我们实现了计算图的构建、正向传播的计算、反向传播中的自动求导，以及各种内置优化算法。这些框架在为我们学习说使用带来便利的同时，也屏蔽了一些需要深入理解的知识，使得我们像一个脚本小子，甚至觉得机器学习就是调调参数，改改网络结构。</p>
 <p>本系列笔记的目标是基于 NumPy、SciPy 等基础的 Python 库来实现一个机器学习框架，深入理解机器学习框架中各种算法的处理。</p>
 
-        
-      
     </div>
 
     
     
     
+        
+      
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:  </strong>XiaoXin</li>
+  <li class="post-copyright-link">
+    <strong>Post link: </strong>
+    <a href="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/" title="动手实现机器学习框架——开篇">https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+</ul>
+</div>
+
+      
+
       <footer class="post-footer">
-          <div class="post-eof"></div>
+          
+            
+          
+          <div class="post-tags">
+            
+              <a href="/tags/machine-learning-framework/" rel="tag"># machine learning framework</a>
+            
+          </div>
+        
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-next post-nav-item">
+              
+                <a href="/2019/09/26/set-language-for-app-on-macos/" rel="next" title="macOS App 语言设置">
+                  <i class="fa fa-chevron-left"></i> macOS App 语言设置
+                </a>
+              
+            </div>
+
+            <span class="post-nav-divider"></span>
+
+            <div class="post-nav-prev post-nav-item">
+              
+            </div>
+          </div>
         
       </footer>
+    
   </div>
   
   
   
   </article>
 
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XiaoXin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="What's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/09/26/set-language-for-app-on-macos/" class="post-title-link" itemprop="url">macOS App 语言设置</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-26T00:00:00+00:00">2019-09-26</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-08 14:21:27" itemprop="dateModified" datetime="2019-10-08T14:21:27+00:00">2019-10-08</time>
-              </span>
-            
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/09/26/set-language-for-app-on-macos/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/26/set-language-for-app-on-macos/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&gt; 访达、Safari -&gt; Safari 浏览器、LaunchPad -&gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：</p>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app) AppleLanguages <span class="string">'("zh-Hans")'</span></span><br></pre></td></tr></table></figure></p>
-<p>其中，<code>mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app</code> 命令是为了获取到应用的标志。</p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
   </div>
-  
-  
-  
-  </article>
-
-    
-      
-
-  <article class="post" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/08/27/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XiaoXin">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="What's Blog">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-            
-            <a href="/2019/08/27/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-          
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              
-                
-              
-
-              <time title="Created: 2019-08-27 00:00:00" itemprop="dateCreated datePublished" datetime="2019-08-27T00:00:00+00:00">2019-08-27</time>
-            </span>
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-08 14:21:27" itemprop="dateModified" datetime="2019-10-08T14:21:27+00:00">2019-10-08</time>
-              </span>
-            
-          
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="fa fa-comment-o"></i>
-      </span>
-        
-      
-      <span class="post-meta-item-text">Disqus: </span>
-    
-    <a title="disqus" href="/2019/08/27/hello-world/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/08/27/hello-world/" itemprop="commentCount"></span></a>
-  </span>
-  
-  
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2>Quick Start</h2>
-<h3>Create a new post</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure></p>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3>Run server</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure></p>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3>Generate static files</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure></p>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3>Deploy to remote sites</h3>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure></p>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-          <div class="post-eof"></div>
-        
-      </footer>
-  </div>
-  
-  
-  
-  </article>
-
-    
-  </section>
-
-  
 
 
           </div>
           
+    
+    
+  <div class="comments" id="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+  
 
         </div>
           
@@ -656,14 +502,6 @@
   
 
   
-    
-      
-    
-      
-    
-      
-    
-  
 
   
 
@@ -671,6 +509,9 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.3.0"></script><script src="/js/post-details.js?v=7.3.0"></script>
+
+
 <script>
   function loadCount() {
     var d = document, s = d.createElement('script');
@@ -680,6 +521,27 @@
   }
   // defer loading until the whole page loading is completed
   window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  function disqus_config() {
+    this.page.url = "https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/";
+    this.page.identifier = "2019/10/06/implement-a-machine-learning-framework/";
+    this.page.title = '动手实现机器学习框架——开篇';};
+  function loadComments() {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://xinping-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  }
+    window.addEventListener('load', loadComments, false);
+  
 </script>
 
 </body>
