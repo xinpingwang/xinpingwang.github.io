@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。 在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深度">
+  <meta name="description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。  在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深">
 <meta name="keywords" content="machine learning framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前向传播与反向传播">
 <meta property="og:url" content="https://xinpingwang.github.io/2019/10/15/forward-and-backward/index.html">
 <meta property="og:site_name" content="What&#39;s Blog">
-<meta property="og:description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。 在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深度">
+<meta property="og:description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。  在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/10/15/forward-and-backward/forward.svg">
-<meta property="og:updated_time" content="2019-10-20T12:35:43.330Z">
+<meta property="og:updated_time" content="2019-10-20T12:59:13.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前向传播与反向传播">
-<meta name="twitter:description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。 在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深度">
+<meta name="twitter:description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。  在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深">
 <meta name="twitter:image" content="https://xinpingwang.github.io/2019/10/15/forward-and-backward/forward.svg">
   <link rel="canonical" href="https://xinpingwang.github.io/2019/10/15/forward-and-backward/">
 
@@ -241,7 +241,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-20 12:35:43" itemprop="dateModified" datetime="2019-10-20T12:35:43+00:00">2019-10-20</time>
+                <time title="Modified: 2019-10-20 12:59:13" itemprop="dateModified" datetime="2019-10-20T12:59:13+00:00">2019-10-20</time>
               </span>
             
           
@@ -273,10 +273,10 @@
       
         <blockquote>
 <p>本文主要内容参考自「动手学深度学习」中的<strong>正向传播、反向传播和计算图</strong>一节，略作修改。</p>
-</blockquote><p>在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深度学习模型训练算法的实现，降低了机器学习入门的门槛。</p><a id="more"></a>
-
+</blockquote>
+<p>在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深度学习模型训练算法的实现，降低了机器学习入门的门槛。</p>
 <p>本文中我们将使⽤数学和计算图（computational graph）两个⽅式来描述一个<strong>带 $L_{2}$ 范数正则化的含单隐藏层的多层感知机模型</strong>的正向传播和反向传播，为接下来动手实现机器学习框架做好准备。</p>
-<p>&lt;!-- more --&gt;</p>
+<p><a id="more"></a></p>
 <h2>正向传播</h2>
 <p>正向传播是指对神经⽹络沿着从输⼊层到输出层的顺序，依次计算并存储模型的中间变量（包括输出）。为简单起⻅，假设输⼊是⼀个特征为 $\boldsymbol{x} \in \mathbb{R}^{d}$ 的样本，且不考虑偏差项，那么中间变量
 $$
