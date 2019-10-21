@@ -4,16 +4,16 @@
 
 
 
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 <meta name="generator" content="Hexo 3.9.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=7.4.0">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=7.4.0">
-  <link rel="mask-icon" href="/images/logo.svg?v=7.4.0" color="#222">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.jpg?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.jpg?v=7.4.0">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.jpg?v=7.4.0">
+  <link rel="mask-icon" href="/images/logo.jpg?v=7.4.0" color="#222">
   <meta http-equiv="Cache-Control" content="no-transform">
   <meta http-equiv="Cache-Control" content="no-siteapp">
   <meta name="google-site-verification" content="ZdvyzyhpcdlTDpGbsFgoJKwe2gy1mIg0F_JCMMnyKpA">
@@ -50,27 +50,27 @@
     path: '',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     translation: {
-      copy_button: 'Copy',
-      copy_success: 'Copied',
-      copy_failure: 'Copy failed'
+      copy_button: '复制',
+      copy_success: '复制成功',
+      copy_failure: '复制失败'
     },
     sidebarPadding: 40
   };
 </script>
 
-  <meta name="description" content="计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。">
-<meta name="keywords" content="machine learning framework">
+  <meta name="description" content="自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&amp;gt; 访达、Safari -&amp;gt; Safari 浏览器、LaunchPad -&amp;gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：">
+<meta name="keywords" content="mac tips">
 <meta property="og:type" content="article">
-<meta property="og:title" content="动手实现机器学习框架——开篇">
-<meta property="og:url" content="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/index.html">
-<meta property="og:site_name" content="What&#39;s Blog">
-<meta property="og:description" content="计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。">
-<meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-10-20T12:59:13.462Z">
+<meta property="og:title" content="macOS App 语言设置">
+<meta property="og:url" content="https://xinpingwang.github.io/2019/09/25/set-language-for-app-on-macos/index.html">
+<meta property="og:site_name" content="小新的黑板报">
+<meta property="og:description" content="自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&amp;gt; 访达、Safari -&amp;gt; Safari 浏览器、LaunchPad -&amp;gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-21T10:28:54.320Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="动手实现机器学习框架——开篇">
-<meta name="twitter:description" content="计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。">
-  <link rel="canonical" href="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/">
+<meta name="twitter:title" content="macOS App 语言设置">
+<meta name="twitter:description" content="自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&amp;gt; 访达、Safari -&amp;gt; Safari 浏览器、LaunchPad -&amp;gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：">
+  <link rel="canonical" href="https://xinpingwang.github.io/2019/09/25/set-language-for-app-on-macos/">
 
 
 <script id="page-configurations">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>动手实现机器学习框架——开篇 | What's Blog</title>
+  <title>macOS App 语言设置 | 小新的黑板报</title>
   
 
 
@@ -120,7 +120,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
   <div class="container use-motion">
     <div class="headband"></div>
 
@@ -131,14 +131,16 @@
     <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">What's Blog</span>
+        <span class="site-title">小新的黑板报</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
+        <p class="site-subtitle">对工程能力无止境的追求</p>
+      
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -158,7 +160,7 @@
       
     
 
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
       
@@ -169,7 +171,7 @@
       
     
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
   </ul>
@@ -200,19 +202,19 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/">
+    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/09/25/set-language-for-app-on-macos/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="XiaoXin">
-      <meta itemprop="description" content="">
+      <meta itemprop="name" content="小新">
+      <meta itemprop="description" content="记录工作、学习和生活中的点点滴滴">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="What's Blog">
+      <meta itemprop="name" content="小新的黑板报">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">动手实现机器学习框架——开篇
+        <h1 class="post-title" itemprop="name headline">macOS App 语言设置
 
           
         </h1>
@@ -222,13 +224,13 @@
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              <span class="post-meta-item-text">Posted on</span>
+              <span class="post-meta-item-text">发表于</span>
 
               
                 
               
 
-              <time title="Created: 2019-10-06 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-06T00:00:00+00:00">2019-10-06</time>
+              <time title="创建时间：2019-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-26T00:00:00+08:00">2019-09-26</time>
             </span>
           
             
@@ -238,8 +240,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2019-10-20 12:59:13" itemprop="dateModified" datetime="2019-10-20T12:59:13+00:00">2019-10-20</time>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2019-10-21 18:28:54" itemprop="dateModified" datetime="2019-10-21T18:28:54+08:00">2019-10-21</time>
               </span>
             
           
@@ -253,9 +255,9 @@
       </span>
         
       
-      <span class="post-meta-item-text">Disqus: </span>
+      <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2019/10/06/implement-a-machine-learning-framework/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/06/implement-a-machine-learning-framework/" itemprop="commentCount"></span></a>
+    <a title="disqus" href="/2019/09/25/set-language-for-app-on-macos/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/25/set-language-for-app-on-macos/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -269,11 +271,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>计算机堪称是人类历史上最伟大的发明，其强大的计算能力帮助人类在诸多领域实现了重大突破。但是，「机器能思考吗？」，图灵在 1950 年提出了这个问题，并给出了一个测试方案，即著名的图灵测试。经过近 70 年的研究与探索，今天，人工智能已经不仅仅是计算机科学家们研究的问题，它已经开始影响人们的生活，甚至将变革整个社会的发展。</p>
-<p><a id="more"></a></p>
-<p>通过传统的编程方式，没有哪个程序员可以设计出一个识别「猫」的程序，但是，通过机器学习可以有效解决这个问题。可以说，机器学习是解决这类问题的一个非常棒的思路。随着产业的发展，也有很多同学或者开发者开始转向机器学习领域，相信大家在入门的时候经常可以看到，N 行代码实现 ** 之类的文章，只要认真跟着做，几乎都可以获得预期的结果。</p>
-<p>我认为这些看起来很简单的代码，要归功于 TensorFlow、PyTorch、Caffe 等机器学习框架，正是框架为我们实现了计算图的构建、正向传播的计算、反向传播中的自动求导，以及各种内置优化算法。这些框架在为我们学习说使用带来便利的同时，也屏蔽了一些需要深入理解的知识，使得我们像一个脚本小子，甚至觉得机器学习就是调调参数，改改网络结构。</p>
-<p>本系列笔记的目标是基于 NumPy、SciPy 等基础的 Python 库来实现一个机器学习框架，深入理解机器学习框架中各种算法的处理。</p>
+        <p>自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&gt; 访达、Safari -&gt; Safari 浏览器、LaunchPad -&gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：</p><a id="more"></a>
+<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app) AppleLanguages <span class="string">'("zh-Hans")'</span></span><br></pre></td></tr></table></figure></p>
+<p>其中，<code>mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app</code> 命令是为了获取到应用的标志。</p>
 
     </div>
 
@@ -287,13 +287,13 @@
 <div>
 <ul class="post-copyright">
   <li class="post-copyright-author">
-    <strong>Post author:  </strong>XiaoXin</li>
+    <strong>本文作者： </strong>小新</li>
   <li class="post-copyright-link">
-    <strong>Post link: </strong>
-    <a href="https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/" title="动手实现机器学习框架——开篇">https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/</a>
+    <strong>本文链接：</strong>
+    <a href="https://xinpingwang.github.io/2019/09/25/set-language-for-app-on-macos/" title="macOS App 语言设置">https://xinpingwang.github.io/2019/09/25/set-language-for-app-on-macos/</a>
   </li>
   <li class="post-copyright-license">
-    <strong>Copyright Notice:  </strong>All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> unless stating additionally.</li>
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
 </ul>
 </div>
 
@@ -305,7 +305,7 @@
           
           <div class="post-tags">
             
-              <a href="/tags/machine-learning-framework/" rel="tag"># machine learning framework</a>
+              <a href="/tags/mac-tips/" rel="tag"># mac tips</a>
             
           </div>
         
@@ -315,8 +315,8 @@
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/09/26/set-language-for-app-on-macos/" rel="next" title="macOS App 语言设置">
-                  <i class="fa fa-chevron-left"></i> macOS App 语言设置
+                <a href="/2019/08/26/hello-world/" rel="next" title="Hello World">
+                  <i class="fa fa-chevron-left"></i> Hello World
                 </a>
               
             </div>
@@ -325,8 +325,8 @@
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/15/forward-and-backward/" rel="prev" title="前向传播与反向传播">
-                  前向传播与反向传播 <i class="fa fa-chevron-right"></i>
+                <a href="/2019/10/05/implement-a-machine-learning-framework/" rel="prev" title="动手实现机器学习框架——开篇">
+                  动手实现机器学习框架——开篇 <i class="fa fa-chevron-right"></i>
                 </a>
               
             </div>
@@ -376,10 +376,10 @@
 
       <ul class="sidebar-nav motion-element">
         <li class="sidebar-nav-toc">
-          Table of Contents
+          文章目录
         </li>
         <li class="sidebar-nav-overview">
-          Overview
+          站点概览
         </li>
       </ul>
 
@@ -390,8 +390,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-  <p class="site-author-name" itemprop="name">XiaoXin</p>
-  <div class="site-description" itemprop="description"></div>
+  <p class="site-author-name" itemprop="name">小新</p>
+  <div class="site-description" itemprop="description">记录工作、学习和生活中的点点滴滴</div>
 </div>
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
@@ -400,7 +400,7 @@
           <a href="/archives/">
         
           <span class="site-state-item-count">5</span>
-          <span class="site-state-item-name">posts</span>
+          <span class="site-state-item-name">日志</span>
         </a>
       </div>
     
@@ -409,7 +409,7 @@
       <div class="site-state-item site-state-tags">
         
         <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">tags</span>
+        <span class="site-state-item-name">标签</span>
         
       </div>
     
@@ -447,11 +447,11 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">XiaoXin</span>
+  <span class="author" itemprop="copyrightHolder">小新</span>
 </div>
-  <div class="powered-by">Powered by <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a></div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">Theme – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a></div>
 
         
 
@@ -523,9 +523,9 @@
 </script>
 <script>
   function disqus_config() {
-    this.page.url = "https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/";
-    this.page.identifier = "2019/10/06/implement-a-machine-learning-framework/";
-    this.page.title = '动手实现机器学习框架——开篇';};
+    this.page.url = "https://xinpingwang.github.io/2019/09/25/set-language-for-app-on-macos/";
+    this.page.identifier = "2019/09/25/set-language-for-app-on-macos/";
+    this.page.title = 'macOS App 语言设置';};
   function loadComments() {
     if (window.DISQUS) {
       DISQUS.reset({
