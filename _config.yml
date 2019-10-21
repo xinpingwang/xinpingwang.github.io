@@ -9,7 +9,7 @@ description: 记录工作、学习和生活中的点点滴滴
 keywords: 人工智能 机器学习 深度学习
 author: 小新
 language: zh-CN
-timezone: Asia/Shanghai
+timezone:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
