@@ -62,17 +62,17 @@
 <meta name="keywords" content="machine learning framework">
 <meta property="og:type" content="article">
 <meta property="og:title" content="前向传播与反向传播">
-<meta property="og:url" content="https://xinpingwang.github.io/2019/10/14/forward-and-backward/index.html">
+<meta property="og:url" content="https://xinpingwang.github.io/2019/10/15/forward-and-backward/index.html">
 <meta property="og:site_name" content="小新的黑板报">
 <meta property="og:description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。  在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://xinpingwang.github.io/2019/10/14/forward-and-backward/forward.svg">
-<meta property="og:updated_time" content="2019-10-21T10:28:54.320Z">
+<meta property="og:image" content="https://xinpingwang.github.io/2019/10/15/forward-and-backward/forward.svg">
+<meta property="og:updated_time" content="2019-10-21T10:36:40.835Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="前向传播与反向传播">
 <meta name="twitter:description" content="本文主要内容参考自「动手学深度学习」中的正向传播、反向传播和计算图一节，略作修改。  在利用机器学习框架来实现模型时，我们只需要提供模型的正向传播（forward propagation）的计算，即如何根据输⼊计算模型输出，框架的自动求导模块会⾃动⽣成反向传播（back-propagation）计算中用到的梯度，我们不再需要根据链式法则去手动推倒梯度。可以说框架为我们提供的⾃动求梯度极⼤简化了深">
-<meta name="twitter:image" content="https://xinpingwang.github.io/2019/10/14/forward-and-backward/forward.svg">
-  <link rel="canonical" href="https://xinpingwang.github.io/2019/10/14/forward-and-backward/">
+<meta name="twitter:image" content="https://xinpingwang.github.io/2019/10/15/forward-and-backward/forward.svg">
+  <link rel="canonical" href="https://xinpingwang.github.io/2019/10/15/forward-and-backward/">
 
 
 <script id="page-configurations">
@@ -204,7 +204,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/10/14/forward-and-backward/">
+    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/10/15/forward-and-backward/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小新">
@@ -232,7 +232,7 @@
                 
               
 
-              <time title="创建时间：2019-10-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-15T00:00:00+08:00">2019-10-15</time>
+              <time title="创建时间：2019-10-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-10-15T00:00:00+00:00">2019-10-15</time>
             </span>
           
             
@@ -243,7 +243,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-10-21 18:28:54" itemprop="dateModified" datetime="2019-10-21T18:28:54+08:00">2019-10-21</time>
+                <time title="修改时间：2019-10-21 10:36:40" itemprop="dateModified" datetime="2019-10-21T10:36:40+00:00">2019-10-21</time>
               </span>
             
           
@@ -259,7 +259,7 @@
       
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2019/10/14/forward-and-backward/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/14/forward-and-backward/" itemprop="commentCount"></span></a>
+    <a title="disqus" href="/2019/10/15/forward-and-backward/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/10/15/forward-and-backward/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -307,7 +307,7 @@ $$
 我们将 $J$ 称为有关给定数据样本的⽬标函数，并在以下的讨论中简称⽬标函数。</p>
 <h2>正向传播的计算图</h2>
 <p>通过绘制计算图可以可视化运算符和变量在计算中的依赖关系，下图为上述模型正向传播的计算图，其中左下⻆是输⼊，右上⻆是输出。可以看到，图中箭头⽅向⼤多是向右和向上，其中⽅框代表变量，圆圈代表运算符，箭头表⽰从输⼊到输出之间的依赖关系。</p>
-<p><img src="/2019/10/14/forward-and-backward/forward.svg" title="[正向传播计算图]"></p>
+<p><img src="/2019/10/15/forward-and-backward/forward.svg" title="[正向传播计算图]"></p>
 <h2>反向传播</h2>
 <p>反向传播指的是计算神经⽹络参数梯度的⽅法。总的来说，反向传播依据微积分中的链式法则，沿着从输出层到输⼊层的顺序，依次计算并存储⽬标函数有关神经⽹络各层的中间变量以及参数的梯度。对输⼊或输出 $X, Y, Z$ 为任意形状张量的函数 $Y=f(X)$ 和 $Z=g(Y)$，通过链式法则，我们有
 $$
@@ -365,7 +365,7 @@ $$</p>
     <strong>本文作者： </strong>小新</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xinpingwang.github.io/2019/10/14/forward-and-backward/" title="前向传播与反向传播">https://xinpingwang.github.io/2019/10/14/forward-and-backward/</a>
+    <a href="https://xinpingwang.github.io/2019/10/15/forward-and-backward/" title="前向传播与反向传播">https://xinpingwang.github.io/2019/10/15/forward-and-backward/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -390,7 +390,7 @@ $$</p>
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/10/05/implement-a-machine-learning-framework/" rel="next" title="动手实现机器学习框架——开篇">
+                <a href="/2019/10/06/implement-a-machine-learning-framework/" rel="next" title="动手实现机器学习框架——开篇">
                   <i class="fa fa-chevron-left"></i> 动手实现机器学习框架——开篇
                 </a>
               
@@ -400,7 +400,7 @@ $$</p>
 
             <div class="post-nav-prev post-nav-item">
               
-                <a href="/2019/10/19/how-to-become-an-excellent-engineer/" rel="prev" title="如何成为一个卓越的工程师">
+                <a href="/2019/10/20/how-to-become-an-excellent-engineer/" rel="prev" title="如何成为一个卓越的工程师">
                   如何成为一个卓越的工程师 <i class="fa fa-chevron-right"></i>
                 </a>
               
@@ -652,8 +652,8 @@ $$</p>
 </script>
 <script>
   function disqus_config() {
-    this.page.url = "https://xinpingwang.github.io/2019/10/14/forward-and-backward/";
-    this.page.identifier = "2019/10/14/forward-and-backward/";
+    this.page.url = "https://xinpingwang.github.io/2019/10/15/forward-and-backward/";
+    this.page.identifier = "2019/10/15/forward-and-backward/";
     this.page.title = '前向传播与反向传播';};
   function loadComments() {
     if (window.DISQUS) {
