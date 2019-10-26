@@ -961,9 +961,9 @@ pre .javascript .function {
 }
 .site-title {
   display: inline-block;
-  font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 1.375em;
-  font-weight: normal;
+  font-family: 'kaiti';
+  font-size: 1.5em;
+  font-weight: bold;
   line-height: 1.5;
   vertical-align: top;
 }
@@ -1131,7 +1131,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #5e7dff;
+  background: #a3ff9a;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
