@@ -200,6 +200,9 @@ h6 {
 p {
   margin: 0 0 20px 0;
 }
+li p {
+  margin: 0 0 8px 0;
+}
 a,
 span.exturl {
   overflow-wrap: break-word;
@@ -805,7 +808,7 @@ pre .javascript .function {
 }
 .pagination {
   border-top: 1px solid #eee;
-  margin: 120px 0 40px;
+  margin: 60px 0 40px;
   text-align: center;
 }
 .pagination .prev,
@@ -946,7 +949,7 @@ pre .javascript .function {
   border-bottom: none;
   color: #fff;
   display: inline-block;
-  line-height: 1.375em;
+  line-height: 1em;
   padding: 0 40px;
   position: relative;
 }
@@ -1131,7 +1134,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ffb5dd;
+  background: #a8ecc9;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1584,7 +1587,7 @@ pre .javascript .function {
 }
 @media (min-width: 1200px) {
   .post-body {
-    font-size: 1.125em;
+    font-size: 1em;
   }
 }
 .post-body span.exturl .fa {
@@ -1606,7 +1609,8 @@ pre .javascript .function {
 }
 .post-button {
   margin-top: 40px;
-  text-align: center;
+  text-align: right;
+  padding-right: 20px;
 }
 .use-motion .post-block,
 .use-motion .pagination,
@@ -1634,7 +1638,7 @@ pre .javascript .function {
   }
 }
 .posts-collapse .collection-title {
-  font-size: 1.125em;
+  font-size: 1em;
   position: relative;
 }
 .posts-collapse .collection-title::before {
@@ -1740,9 +1744,9 @@ pre .javascript .function {
 .post-eof {
   background: #ccc;
   height: 1px;
-  margin: 80px auto 60px;
+  margin: 40px auto 20px;
   text-align: center;
-  width: 8%;
+  width: 95%;
 }
 article:last-child .post-eof {
   display: none;
@@ -1855,7 +1859,7 @@ article:last-child .post-eof {
   border: 0;
 }
 .posts-expand .post-header {
-  font-size: 1.125em;
+  font-size: 1em;
 }
 .posts-expand .post-title {
   overflow-wrap: break-word;
@@ -1896,7 +1900,7 @@ article:last-child .post-eof {
 .posts-expand .post-meta {
   color: #999;
   font-family: 'Lato', "PingFang SC", "Microsoft YaHei", sans-serif;
-  margin: 3px 0 60px 0;
+  margin: 3px 0 30px 0;
   text-align: center;
 }
 .posts-expand .post-meta .post-description {

@@ -58,19 +58,19 @@
   };
 </script>
 
-  <meta name="description" content="自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&amp;gt; 访达、Safari -&amp;gt; Safari 浏览器、LaunchPad -&amp;gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：">
-<meta name="keywords" content="mac tips">
+  <meta name="description" content="在机器学习中经常要对输入数据做一些预处理，最常见的就是 Normalization，其重要的作用就是可以加速网络的训练。但是，这个单词在中文中有两种意义截然不同的翻译，标准化和归一化。因此，这里记录一下标准化和归一化的区别：标准化标准化将数据转化为均值为 0，方差为 1 的数据 $$ X^{*} = \frac{X - EX}{\sqrt{DX}} $$">
+<meta name="keywords" content="人工智能 机器学习 深度学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="macOS App 语言设置">
-<meta property="og:url" content="https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/index.html">
+<meta property="og:title" content="标准化 vs 归一化">
+<meta property="og:url" content="https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/index.html">
 <meta property="og:site_name" content="小新的黑板报">
-<meta property="og:description" content="自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&amp;gt; 访达、Safari -&amp;gt; Safari 浏览器、LaunchPad -&amp;gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：">
+<meta property="og:description" content="在机器学习中经常要对输入数据做一些预处理，最常见的就是 Normalization，其重要的作用就是可以加速网络的训练。但是，这个单词在中文中有两种意义截然不同的翻译，标准化和归一化。因此，这里记录一下标准化和归一化的区别：标准化标准化将数据转化为均值为 0，方差为 1 的数据 $$ X^{*} = \frac{X - EX}{\sqrt{DX}} $$">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-12-05T15:12:24.232Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="macOS App 语言设置">
-<meta name="twitter:description" content="自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&amp;gt; 访达、Safari -&amp;gt; Safari 浏览器、LaunchPad -&amp;gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：">
-  <link rel="canonical" href="https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/">
+<meta name="twitter:title" content="标准化 vs 归一化">
+<meta name="twitter:description" content="在机器学习中经常要对输入数据做一些预处理，最常见的就是 Normalization，其重要的作用就是可以加速网络的训练。但是，这个单词在中文中有两种意义截然不同的翻译，标准化和归一化。因此，这里记录一下标准化和归一化的区别：标准化标准化将数据转化为均值为 0，方差为 1 的数据 $$ X^{*} = \frac{X - EX}{\sqrt{DX}} $$">
+  <link rel="canonical" href="https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/">
 
 
 <script id="page-configurations">
@@ -84,7 +84,7 @@
   };
 </script>
 
-  <title>macOS App 语言设置 | 小新的黑板报</title>
+  <title>标准化 vs 归一化 | 小新的黑板报</title>
   
 
 
@@ -213,7 +213,7 @@
   
   
   <div class="post-block post">
-    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/">
+    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="小新">
@@ -225,7 +225,7 @@
       <meta itemprop="name" content="小新的黑板报">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">macOS App 语言设置
+        <h1 class="post-title" itemprop="name headline">标准化 vs 归一化
 
           
         </h1>
@@ -241,7 +241,7 @@
                 
               
 
-              <time title="创建时间：2019-09-26 00:00:00" itemprop="dateCreated datePublished" datetime="2019-09-26T00:00:00+00:00">2019-09-26</time>
+              <time title="创建时间：2019-12-04 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-04T00:00:00+00:00">2019-12-04</time>
             </span>
           
             
@@ -268,7 +268,7 @@
       
       <span class="post-meta-item-text">Disqus：</span>
     
-    <a title="disqus" href="/2019/09/26/set-language-for-app-on-macos/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/09/26/set-language-for-app-on-macos/" itemprop="commentCount"></span></a>
+    <a title="disqus" href="/2019/12/04/standardize-vs-normalize/#comments" itemprop="discussionUrl"><span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/04/standardize-vs-normalize/" itemprop="commentCount"></span></a>
   </span>
   
   
@@ -280,7 +280,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>382</span>
+              <span>250</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -303,9 +303,19 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>自 macOS High Sierra（10.13）开始，许多内置应用都有了中文翻译，例如：Finder -&gt; 访达、Safari -&gt; Safari 浏览器、LaunchPad -&gt; 启动台等等。相信有很多人和我一样，不是很喜欢这种翻译，但是如果将系统语言切换为英文，那么许多其他软件也都变为英文，使用上不那么便利，这时，我们可以通过如下命令为应用单独设置语言：</p><a id="more"></a>
-<p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app) AppleLanguages <span class="string">'("zh-Hans")'</span></span><br></pre></td></tr></table></figure></p>
-<p>其中，<code>mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app</code> 命令是为了获取到应用的标志。</p>
+        <p>在机器学习中经常要对输入数据做一些预处理，最常见的就是 Normalization，其重要的作用就是可以加速网络的训练。但是，这个单词在中文中有两种意义截然不同的翻译，标准化和归一化。因此，这里记录一下标准化和归一化的区别：</p><h2>标准化</h2><p>标准化将数据转化为均值为 0，方差为 1 的数据
+$$
+X^{*} = \frac{X - EX}{\sqrt{DX}}
+$$</p><a id="more"></a>
+
+
+<h2>归一化</h2>
+<p>归一化通常用来对数据进行无量纲化处理
+$$
+X^{*} = \frac{X}{X_{max} - X_{min}}
+$$</p>
+<h2>Normalization 是如何加速网络训练的</h2>
+<p>TODO</p>
 
     </div>
 
@@ -322,7 +332,7 @@
     <strong>本文作者： </strong>小新</li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/" title="macOS App 语言设置">https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/</a>
+    <a href="https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/" title="标准化 vs 归一化">https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
@@ -332,23 +342,14 @@
       
 
       <footer class="post-footer">
-          
-            
-          
-          <div class="post-tags">
-            
-              <a href="/tags/mac-tips/" rel="tag"># mac tips</a>
-            
-          </div>
-        
 
         
 
           <div class="post-nav">
             <div class="post-nav-next post-nav-item">
               
-                <a href="/2019/08/27/hello-world/" rel="next" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2019/11/01/python-dynamic-type-and-type-hints/" rel="next" title="Python 动态类型以及类型提示">
+                  <i class="fa fa-chevron-left"></i> Python 动态类型以及类型提示
                 </a>
               
             </div>
@@ -356,10 +357,6 @@
             <span class="post-nav-divider"></span>
 
             <div class="post-nav-prev post-nav-item">
-              
-                <a href="/2019/10/06/implement-a-machine-learning-framework/" rel="prev" title="动手实现机器学习框架——开篇">
-                  动手实现机器学习框架——开篇 <i class="fa fa-chevron-right"></i>
-                </a>
               
             </div>
           </div>
@@ -417,6 +414,8 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">1.</span> <span class="nav-text">标准化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">2.</span> <span class="nav-text">归一化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#null"><span class="nav-number">3.</span> <span class="nav-text">Normalization 是如何加速网络训练的</span></a></li></ol></div>
+        
       </div>
       <!--/noindex-->
 
@@ -548,6 +547,58 @@
   
 
   
+    
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+  
 
   
 
@@ -565,9 +616,9 @@
 </script>
 <script>
   function disqus_config() {
-    this.page.url = "https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/";
-    this.page.identifier = "2019/09/26/set-language-for-app-on-macos/";
-    this.page.title = 'macOS App 语言设置';};
+    this.page.url = "https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/";
+    this.page.identifier = "2019/12/04/standardize-vs-normalize/";
+    this.page.title = '标准化 vs 归一化';};
   function loadComments() {
     if (window.DISQUS) {
       DISQUS.reset({
