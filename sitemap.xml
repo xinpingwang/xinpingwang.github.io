@@ -2,65 +2,72 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://xinpingwang.github.io/2019/08/27/hello-world/</loc>
-    
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xinpingwang.github.io/2019/10/20/how-to-become-an-excellent-engineer/</loc>
-    
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/</loc>
-    
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/</loc>
     
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
+    <lastmod>2019-12-08T07:04:19.331Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xinpingwang.github.io/2019/09/26/set-language-for-app-on-macos/</loc>
     
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
+    <lastmod>2019-12-08T07:04:19.331Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xinpingwang.github.io/2019/12/04/standardize-vs-normalize/</loc>
     
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
+    <lastmod>2019-12-08T07:04:19.331Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xinpingwang.github.io/about/index.html</loc>
     
-    <lastmod>2019-12-05T15:12:24.232Z</lastmod>
+    <lastmod>2019-12-08T07:04:19.331Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xinpingwang.github.io/2019/10/22/first-line-of-code/</loc>
     
-    <lastmod>2019-12-05T15:12:24.228Z</lastmod>
+    <lastmod>2019-12-08T07:04:19.327Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xinpingwang.github.io/2019/08/27/hello-world/</loc>
+    
+    <lastmod>2019-12-08T07:04:19.327Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xinpingwang.github.io/2019/10/20/how-to-become-an-excellent-engineer/</loc>
+    
+    <lastmod>2019-12-08T07:04:19.327Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xinpingwang.github.io/2019/10/06/implement-a-machine-learning-framework/</loc>
+    
+    <lastmod>2019-12-08T07:04:19.327Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://xinpingwang.github.io/2019/12/08/lenet/</loc>
+    
+    <lastmod>2019-12-08T07:04:19.327Z</lastmod>
     
   </url>
   
   <url>
     <loc>https://xinpingwang.github.io/2019/10/15/forward-and-backward/</loc>
     
-    <lastmod>2019-12-05T15:12:24.228Z</lastmod>
+    <lastmod>2019-12-08T07:04:19.327Z</lastmod>
     
   </url>
   
