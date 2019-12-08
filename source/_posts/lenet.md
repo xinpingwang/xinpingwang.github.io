@@ -108,7 +108,7 @@ $$
 
 ## 算法复现
 
-参见 https://github.com/xinpingwang/paper-with-code/tree/master/lenet
+参见 [https://github.com/xinpingwang/paper-with-code/tree/master/lenet](https://github.com/xinpingwang/paper-with-code/tree/master/lenet)
 
 ## 一些 Tricks
 
