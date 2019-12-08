@@ -1134,7 +1134,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #c43d3c;
+  background: #ffa3a6;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -1507,6 +1507,10 @@ pre .javascript .function {
   }
   .post-body > ul {
     margin-inline-end: 1em;
+  }
+  .post-body > ul,
+  .post-body ol {
+    padding-right: 18px;
   }
   .post-body > blockquote {
     margin: 0 18px;
