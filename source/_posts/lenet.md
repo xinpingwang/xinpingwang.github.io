@@ -104,11 +104,7 @@ $$
 这个损失函数在多数情况下是适用的，但是，它存在下面几个问题：
 
 1. 如果我们允许 RBF 中的参数进行调整，有一个简单但是不可接受（trivial but totally unacceptable）情况可能会出现，即：RBF 层的所有参数向量都相同，并且 F6 的状态与参数向量一致。这种状态下，模型将会忽略输入，并且 RBF 的输出永远为 0。这种状况可以通过固定 RBF 参数来避免；
-2. 各个类别之间没有竞争关系，这种竞争关系可以通过更具区别性的训练标准来获得。例如，最大互信息（Maximum Mutual Information）准则。
-
-## 算法复现
-
-参见 [https://github.com/xinpingwang/paper-with-code/tree/master/lenet](https://github.com/xinpingwang/paper-with-code/tree/master/lenet)
+2. 各个类别之间没有竞争关系，这种竞争关系可以通过更具区别性的训练标准来获得。例如，最大互信息（Maximum Mutual Information）准则。 
 
 ## 一些 Tricks
 
@@ -124,11 +120,15 @@ $$
 
    1. 降低连接的数量；2. 打破了网络的对称性，使得不同的特征图可以提取不同的特征。
 
-## 对比测试
+## 算法复现
 
-上面说到作者在网络设计时使用的一些 Tricks，那么如果没有这些 Tricks，网络的性能会有什么影响呢？下面将进行一下对比性的测试。
+笔者利用 PyTorch 对 LeNet 进行了复现，与目前多数教程中的**简化版本**（使用平均池化代替降采样，softmax 代替 RBF，随机 Dropout 代替 C3 或完全去除了 Dropout）不同，此实现与论文中描述的模型完全一致，同时，还支持通过参数的方式来指定池化和激活函数，源码已发布到  [GitHub](https://github.com/xinpingwang/paper-with-code/tree/master/lenet)，欢迎 star。
 
-TODO
+>  此外，Wei-Hsiang Wang 有一个仅使用 NumPy 来复现 LeNet 的版本 [LeNet-from-Scratch](https://github.com/mattwang44/LeNet-from-Scratch)（笔者在编码过程中对其进行了一些参考）。
+
+下面是在 BATCH_SIZE 为 32 时，检测正确率随 EPOCH 的变化图。
+
+{% asset_img train.png [训练过程中检测正确率随 Epoch 的变化图] %}
 
 ## 参考资料
 
