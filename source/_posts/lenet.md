@@ -122,7 +122,7 @@ $$
 
 ## 算法复现
 
-笔者利用 PyTorch 对 LeNet 进行了复现，与目前多数教程中的**简化版本**（使用平均池化代替降采样，softmax 代替 RBF，随机 Dropout 代替 C3 或完全去除了 Dropout）不同，此实现与论文中描述的模型完全一致，同时，还支持通过参数的方式来指定池化和激活函数，源码已发布到  [GitHub](https://github.com/xinpingwang/paper-with-code/tree/master/lenet)，欢迎 star。
+笔者利用 PyTorch 对 LeNet 进行了复现，与目前多数教程中的**简化版本**（使用平均池化代替降采样，softmax 代替 RBF，随机 Dropout 代替 C3 或完全去除了 Dropout）不同，此实现与论文中描述的模型完全一致，同时，还支持通过参数的方式来指定池化和激活函数，源码已发布到  [GitHub](https://github.com/xinpingwang/paper-with-code/tree/master/lenet)（欢迎 star），也可以直接在 [Google Colab]( https://colab.research.google.com/github/xinpingwang/paper-with-code/blob/master/lenet/lenet.ipynb) 上运行。
 
 >  此外，Wei-Hsiang Wang 有一个仅使用 NumPy 来复现 LeNet 的版本 [LeNet-from-Scratch](https://github.com/mattwang44/LeNet-from-Scratch)（笔者在编码过程中对其进行了一些参考）。
 
