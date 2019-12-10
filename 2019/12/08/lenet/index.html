@@ -72,7 +72,7 @@
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/rbf.png">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/initial_parameters_of_rbf_for_full_ascii_set.png">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/train.png">
-<meta property="og:updated_time" content="2019-12-10T03:15:19.212Z">
+<meta property="og:updated_time" content="2019-12-10T03:38:37.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeNet 论文阅读及复现">
 <meta name="twitter:description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-10 03:15:19" itemprop="dateModified" datetime="2019-12-10T03:15:19+00:00">2019-12-10</time>
+                <time title="修改时间：2019-12-10 03:38:37" itemprop="dateModified" datetime="2019-12-10T03:38:37+00:00">2019-12-10</time>
               </span>
             
           
@@ -404,7 +404,7 @@ $$
 </li>
 </ol>
 <h2>算法复现</h2>
-<p>笔者利用 PyTorch 对 LeNet 进行了复现，与目前多数教程中的<strong>简化版本</strong>（使用平均池化代替降采样，softmax 代替 RBF，随机 Dropout 代替 C3 或完全去除了 Dropout）不同，此实现与论文中描述的模型完全一致，同时，还支持通过参数的方式来指定池化和激活函数，源码已发布到  <a href="https://github.com/xinpingwang/paper-with-code/tree/master/lenet" target="_blank" rel="noopener">GitHub</a>，欢迎 star。</p>
+<p>笔者利用 PyTorch 对 LeNet 进行了复现，与目前多数教程中的<strong>简化版本</strong>（使用平均池化代替降采样，softmax 代替 RBF，随机 Dropout 代替 C3 或完全去除了 Dropout）不同，此实现与论文中描述的模型完全一致，同时，还支持通过参数的方式来指定池化和激活函数，源码已发布到  <a href="https://github.com/xinpingwang/paper-with-code/tree/master/lenet" target="_blank" rel="noopener">GitHub</a>（欢迎 star），也可以直接在 <a href="https://colab.research.google.com/github/xinpingwang/paper-with-code/blob/master/lenet/lenet.ipynb" target="_blank" rel="noopener">Google Colab</a> 上运行。</p>
 <blockquote>
 <p>此外，Wei-Hsiang Wang 有一个仅使用 NumPy 来复现 LeNet 的版本 <a href="https://github.com/mattwang44/LeNet-from-Scratch" target="_blank" rel="noopener">LeNet-from-Scratch</a>（笔者在编码过程中对其进行了一些参考）。</p>
 </blockquote>
