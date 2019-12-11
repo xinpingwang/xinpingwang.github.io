@@ -58,13 +58,13 @@
   };
 </script>
 
-  <meta name="description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
+  <meta name="description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet-5 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
 <meta name="keywords" content="LeNet,CNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="LeNet 论文阅读及复现">
 <meta property="og:url" content="https://xinpingwang.github.io/2019/12/08/lenet/index.html">
 <meta property="og:site_name" content="小新的黑板报">
-<meta property="og:description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
+<meta property="og:description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet-5 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/lenet_example.gif">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/arch_of_lenet.png">
@@ -72,10 +72,10 @@
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/rbf.png">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/initial_parameters_of_rbf_for_full_ascii_set.png">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/train.png">
-<meta property="og:updated_time" content="2019-12-10T03:38:37.385Z">
+<meta property="og:updated_time" content="2019-12-11T08:37:02.779Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeNet 论文阅读及复现">
-<meta name="twitter:description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
+<meta name="twitter:description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet-5 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
 <meta name="twitter:image" content="https://xinpingwang.github.io/2019/12/08/lenet/lenet_example.gif">
   <link rel="canonical" href="https://xinpingwang.github.io/2019/12/08/lenet/">
 
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-10 03:38:37" itemprop="dateModified" datetime="2019-12-10T03:38:37+00:00">2019-12-10</time>
+                <time title="修改时间：2019-12-11 08:37:02" itemprop="dateModified" datetime="2019-12-11T08:37:02+00:00">2019-12-11</time>
               </span>
             
           
@@ -310,10 +310,10 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。</p>
+        <p>在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet-5 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。</p>
 <p><img src="/2019/12/08/lenet/lenet_example.gif" title="[LeNet 检测结果示例]"></p>
 <p><a id="more"></a></p>
-<p>遥想 1998 年，那时笔者刚上小学，第一次接触电脑（县里的扶贫机构向我们学校捐赠了两三台奔腾 IV 处理器的电脑）也是三四年级的时候了，那时候也不知道电脑可以干啥，就是觉得很神奇。而 98 年的时候，Yann LeCun 能使用的最先进的处理器也就是奔腾 II 了，只有 <strong>333MHz</strong>；并且，也没有今天这么多的神经网络框架可以使用。所以，在当时的计算能力下，能完成这样的工作，真的是非常了不起的成就。下面，我们来剖析一下 LeNet 的设计：</p>
+<p>遥想 1998 年，笔者刚上小学，第一次接触电脑（县里的扶贫机构向我们学校捐赠了两三台奔腾 IV 处理器的电脑）也是三四年级的时候了，那时候也不知道电脑可以干啥，就是觉得很神奇。在当时，Yann LeCun 能使用的最先进的处理器也就是奔腾 II 了，主频只有 <strong>333MHz</strong>；而且，Python 和 MatLab 都还没有出现，更不用说现在随手就有多个选择的机器学习框架了。所以，在当时的条件下，LeCun 带领他的学生们能完成这样的工作真的是非常了不起的成就。下面，我们就来剖析一下 LeNet 的设计：</p>
 <h2>LeNet 网络结构</h2>
 <p>LeNet 一共由七个网络层（不包括输入层）组成：<strong>3 个卷积层</strong>、<strong>2 个降采样层</strong>和 <strong>2 个全联接层</strong>，需要注意的是，论文中的<strong>降采样层</strong>与现在常用的<strong>池化层</strong>有一点区别：</p>
 <ul>
@@ -616,7 +616,7 @@ $$
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">28 分钟</span>
+    <span title="站点阅读时长">29 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动</div>
   <span class="post-meta-divider">|</span>
