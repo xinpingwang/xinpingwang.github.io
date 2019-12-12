@@ -13,7 +13,7 @@ tags:
 
 <escape><!-- more --></escape>
 
-遥想 1998 年，笔者刚上小学，第一次接触电脑（县里的扶贫机构向我们学校捐赠了两三台奔腾 IV 处理器的电脑）也是三四年级的时候了，那时候也不知道电脑可以干啥，就是觉得很神奇。在当时，Yann LeCun 能使用的最先进的处理器也就是奔腾 II 了，主频只有 **333MHz**；而且，Python 和 MatLab 都还没有出现，更不用说现在随手就有多个选择的机器学习框架了。所以，在当时的条件下，LeCun 带领他的学生们能完成这样的工作真的是非常了不起的成就。下面，我们就来剖析一下 LeNet 的设计：
+遥想 1998 年，笔者刚上小学，第一次接触电脑（县里的扶贫机构向我们学校捐赠了两三台奔腾 IV 处理器的电脑）也是三四年级的时候了，当时的电脑没有连接网络，似乎什么也做不了，老师们只是偶尔在上面玩一玩纸牌游戏。而在 AT&T 内部已经大规模的使用 LeNet 来识别票据了，遗憾的是这么伟大的成果也只能在 AT&T 内部使用，一方面，因为当时信息还不是很发达，不像现在传播的这么快，另一方面，当是几乎没有两家机构使用的是一样的软硬件平台。下面，我们就来剖析一下 LeNet 的设计：
 
 ## LeNet 网络结构
 
@@ -133,10 +133,9 @@ $$
 ## 参考资料
 
 - [Gradient-Based Learning Applied to Document Recognition](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf)
-
 - [LeNet论文阅读：LeNet结构以及参数个数计算](https://blog.csdn.net/silent56_th/article/details/53456522)
-
 - [PyTorch Taipei 2018 week1: LeNet-5](https://mattwang44.github.io/en/articles/PyTorchTP-LeNet/)
+- [Andrew Ng interviews Yann LeCun](https://www.youtube.com/watch?v=Svb1c6AkRzE)
 
 
 
