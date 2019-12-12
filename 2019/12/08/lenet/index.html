@@ -72,7 +72,7 @@
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/rbf.png">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/initial_parameters_of_rbf_for_full_ascii_set.png">
 <meta property="og:image" content="https://xinpingwang.github.io/2019/12/08/lenet/train.png">
-<meta property="og:updated_time" content="2019-12-11T08:37:02.779Z">
+<meta property="og:updated_time" content="2019-12-12T10:30:09.890Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LeNet 论文阅读及复现">
 <meta name="twitter:description" content="在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet-5 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。">
@@ -259,7 +259,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2019-12-11 08:37:02" itemprop="dateModified" datetime="2019-12-11T08:37:02+00:00">2019-12-11</time>
+                <time title="修改时间：2019-12-12 10:30:09" itemprop="dateModified" datetime="2019-12-12T10:30:09+00:00">2019-12-12</time>
               </span>
             
           
@@ -287,7 +287,7 @@
               
                 <span class="post-meta-item-text">本文字数：</span>
               
-              <span>3.2k</span>
+              <span>3.3k</span>
             </span>
           
             <span class="post-meta-item" title="阅读时长">
@@ -313,7 +313,7 @@
         <p>在入门深度学习时，通常接触到的第一个例子就是 LeNet。LeNet-5 由 Yann LeCun 大神在 1998 年设计「按论文发表时间」， 相较于 VGG 和 Inception 等较大的深度卷积神经网络来说，LeNet 是一个很小的网络，只有 6 万个参数，但是，其奠定了以后很长时间内卷积神经网络的设计模式。</p>
 <p><img src="/2019/12/08/lenet/lenet_example.gif" title="[LeNet 检测结果示例]"></p>
 <p><a id="more"></a></p>
-<p>遥想 1998 年，笔者刚上小学，第一次接触电脑（县里的扶贫机构向我们学校捐赠了两三台奔腾 IV 处理器的电脑）也是三四年级的时候了，那时候也不知道电脑可以干啥，就是觉得很神奇。在当时，Yann LeCun 能使用的最先进的处理器也就是奔腾 II 了，主频只有 <strong>333MHz</strong>；而且，Python 和 MatLab 都还没有出现，更不用说现在随手就有多个选择的机器学习框架了。所以，在当时的条件下，LeCun 带领他的学生们能完成这样的工作真的是非常了不起的成就。下面，我们就来剖析一下 LeNet 的设计：</p>
+<p>遥想 1998 年，笔者刚上小学，第一次接触电脑（县里的扶贫机构向我们学校捐赠了两三台奔腾 IV 处理器的电脑）也是三四年级的时候了，当时的电脑没有连接网络，似乎什么也做不了，老师们只是偶尔在上面玩一玩纸牌游戏。而在 AT&amp;T 内部已经大规模的使用 LeNet 来识别票据了，遗憾的是这么伟大的成果也只能在 AT&amp;T 内部使用，一方面，因为当时信息还不是很发达，不像现在传播的这么快，另一方面，当是几乎没有两家机构使用的是一样的软硬件平台。下面，我们就来剖析一下 LeNet 的设计：</p>
 <h2>LeNet 网络结构</h2>
 <p>LeNet 一共由七个网络层（不包括输入层）组成：<strong>3 个卷积层</strong>、<strong>2 个降采样层</strong>和 <strong>2 个全联接层</strong>，需要注意的是，论文中的<strong>降采样层</strong>与现在常用的<strong>池化层</strong>有一点区别：</p>
 <ul>
@@ -412,15 +412,10 @@ $$
 <p><img src="/2019/12/08/lenet/train.png" title="[训练过程中检测正确率随 Epoch 的变化图]"></p>
 <h2>参考资料</h2>
 <ul>
-<li>
-<p><a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf" target="_blank" rel="noopener">Gradient-Based Learning Applied to Document Recognition</a></p>
-</li>
-<li>
-<p><a href="https://blog.csdn.net/silent56_th/article/details/53456522" target="_blank" rel="noopener">LeNet论文阅读：LeNet结构以及参数个数计算</a></p>
-</li>
-<li>
-<p><a href="https://mattwang44.github.io/en/articles/PyTorchTP-LeNet/" target="_blank" rel="noopener">PyTorch Taipei 2018 week1: LeNet-5</a></p>
-</li>
+<li><a href="http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf" target="_blank" rel="noopener">Gradient-Based Learning Applied to Document Recognition</a></li>
+<li><a href="https://blog.csdn.net/silent56_th/article/details/53456522" target="_blank" rel="noopener">LeNet论文阅读：LeNet结构以及参数个数计算</a></li>
+<li><a href="https://mattwang44.github.io/en/articles/PyTorchTP-LeNet/" target="_blank" rel="noopener">PyTorch Taipei 2018 week1: LeNet-5</a></li>
+<li><a href="https://www.youtube.com/watch?v=Svb1c6AkRzE" target="_blank" rel="noopener">Andrew Ng interviews Yann LeCun</a></li>
 </ul>
 
     </div>
