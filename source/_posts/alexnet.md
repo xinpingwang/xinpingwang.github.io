@@ -1,6 +1,6 @@
 ---
 title: AlexNet：开启卷积神经网络的新时代
-date: 2019-12-10
+date: 2019-12-15
 mathjax: true
 tags:
   - AlexNet
@@ -120,7 +120,7 @@ $$
 
 ## 算法复现
 
-同样的，笔者对使用 PyTorch 对 AlexNet 进行了复现，源码发布在 [GitHub](https://github.com/xinpingwang/paper-with-code/tree/master/alexnet) 上。
+同样的，笔者使用 PyTorch 对 AlexNet 进行了复现，源码发布在 [GitHub](https://github.com/xinpingwang/paper-with-code/tree/master/alexnet) 上。
 
 ## 参考资料
 
