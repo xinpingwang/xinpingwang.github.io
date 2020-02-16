@@ -1,5 +1,5 @@
 ---
-title: macOS App 语言设置
+title: 在 macOS 上，为 App 单独设置语言偏好
 date: 2019-09-26
 tag:
 - mac tips
@@ -12,3 +12,11 @@ defaults write $(mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microso
 ```
 
 其中，`mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app` 命令是为了获取到应用的标志。
+
+```shell
+~ $ mdls -name kMDItemCFBundleIdentifier -raw /Applications/Microsoft\ Word.app
+com.microsoft.Word
+```
+
+
+
