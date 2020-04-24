@@ -215,7 +215,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-24 02:02:51" itemprop="dateModified" datetime="2020-04-24T02:02:51+00:00">2020-04-24</time>
+                <time title="修改时间：2020-04-24 02:08:02" itemprop="dateModified" datetime="2020-04-24T02:08:02+00:00">2020-04-24</time>
               </span>
 
           
@@ -261,20 +261,14 @@
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -h host -U username [-d db_name]</span><br></pre></td></tr></table></figure>
 <p><strong>执行 sql 文件</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">psql -h host -U username -d db_name -f filename.sql</span><br></pre></td></tr></table></figure>
-<p><strong>psql 交互环境下常用指令</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">\l 查看所有可用数据库</span><br><span class="line">\d 查看数据库下的所有表</span><br><span class="line">\c db_name 切换到指定数据库</span><br><span class="line">\password user 修改指定用户的密码</span><br><span class="line">create database db_name 创建数据库</span><br></pre></td></tr></table></figure>
-<p><strong>配置免密码登录</strong></p>
-<p>创建 <code>~/.pgpass</code> 文件，出于安全考虑，文件权限必须是 0600，文件内容格式如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostname:port:database:username:password</span><br></pre></td></tr></table></figure>
-<p><a href="https://stackoverflow.com/questions/6405127/how-do-i-specify-a-password-to-psql-non-interactively" target="_blank" rel="noopener">https://stackoverflow.com/questions/6405127/how-do-i-specify-a-password-to-psql-non-interactively</a></p>
-<p><a href="https://www.postgresql.org/docs/9.3/libpq-pgpass.html" target="_blank" rel="noopener">https://www.postgresql.org/docs/9.3/libpq-pgpass.html</a></p>
-<p><strong>重置 SERIAL 计数器</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> setval(<span class="string">'**_id_seq'</span>, <span class="number">1</span>, <span class="literal">FALSE</span>);</span><br></pre></td></tr></table></figure>
-<p><a href="https://timmurphy.org/2009/11/19/resetting-serial-counters-in-postgresql/" target="_blank" rel="noopener">https://timmurphy.org/2009/11/19/resetting-serial-counters-in-postgresql/</a></p>
-<p><strong>复制数据到另一个表</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- target 表存在</span></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> 目标表 <span class="keyword">select</span> * <span class="keyword">from</span> 原表;</span><br><span class="line"><span class="comment">-- target 表不存在</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">into</span> 目标表 <span class="keyword">from</span> 原表;</span><br></pre></td></tr></table></figure>
-<p><a href="https://www.cnblogs.com/feifeicui/p/8965807.html" target="_blank" rel="noopener">https://www.cnblogs.com/feifeicui/p/8965807.html</a></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/04/21/postgresql-cheat-sheet/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -324,7 +318,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-24 02:02:51" itemprop="dateModified" datetime="2020-04-24T02:02:51+00:00">2020-04-24</time>
+                <time title="修改时间：2020-04-24 02:08:02" itemprop="dateModified" datetime="2020-04-24T02:08:02+00:00">2020-04-24</time>
               </span>
 
           
@@ -424,7 +418,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-24 02:02:51" itemprop="dateModified" datetime="2020-04-24T02:02:51+00:00">2020-04-24</time>
+                <time title="修改时间：2020-04-24 02:08:02" itemprop="dateModified" datetime="2020-04-24T02:08:02+00:00">2020-04-24</time>
               </span>
 
           
@@ -528,7 +522,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-24 02:02:51" itemprop="dateModified" datetime="2020-04-24T02:02:51+00:00">2020-04-24</time>
+                <time title="修改时间：2020-04-24 02:08:02" itemprop="dateModified" datetime="2020-04-24T02:08:02+00:00">2020-04-24</time>
               </span>
 
           
@@ -628,7 +622,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-04-24 02:02:51" itemprop="dateModified" datetime="2020-04-24T02:02:51+00:00">2020-04-24</time>
+                <time title="修改时间：2020-04-24 02:08:02" itemprop="dateModified" datetime="2020-04-24T02:08:02+00:00">2020-04-24</time>
               </span>
 
           
