@@ -16,6 +16,8 @@ psql -h host -U username [-d db_name]
 psql -h host -U username -d db_name -f filename.sql
 ```
 
+<escape><!-- more --></escape>
+
 **psql 交互环境下常用指令**
 
 ```
