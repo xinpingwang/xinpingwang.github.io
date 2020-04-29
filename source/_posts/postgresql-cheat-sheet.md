@@ -59,3 +59,16 @@ select * into 目标表 from 原表;
 
 https://www.cnblogs.com/feifeicui/p/8965807.html
 
+**通过连表查询的结果更新字段**
+
+```
+UPDATE A
+SET A.c1 = expression
+FROM B
+WHERE A.c2 = B.c2;
+```
+
+https://www.postgresqltutorial.com/postgresql-update-join/
+
+
+
