@@ -82,6 +82,7 @@ Vue 采用的是 `Object.defineProperty()` 方法来实现的，即：对组件�
 > Vue 源码：https://github.com/vuejs/vue/blob/dev/src/core/observer/index.js
 
 #### 对于数组
+
 数组与对象不同，Vue 通过覆盖 Array 原型方法的方式来实现的。JavaScript 中改变数组元素的方法有：`push`、`pop`、`shift`、`unshift`、`splice`、`sort` 和`reverse` 共 7 个，只要拦截 Array 的这些操作我们就可一获知绝大多数情况下数组中元素的变化。
 
 >  Vue 源码：https://github.com/vuejs/vue/blob/dev/src/core/observer/array.js
@@ -92,7 +93,7 @@ Vue 采用的是 `Object.defineProperty()` 方法来实现的，即：对组件�
 
 1. 无法检测属性的添加和删除；
 2. 对于已经创建的实例，无法添加根级别的响应式属性；
-3. 利用缩影直接设置一个数组项的值；
+3. 利用索引直接设置一个数组项的值；
 4. 修改数组长度
 
 ### 依赖收集
