@@ -85,7 +85,7 @@ $$
 
 {% asset_img lrn.gif [LRN 计算示意图] %}
 
-> 图片来自，WEI-HSIANG WANG 的博客 https://mattwang44.github.io/en/articles/PyTorchTP-AlexNet/，本文中的内容也对其进行了较多的参考，在此表示感谢。
+> 图片来自，[WEI-HSIANG WANG 的博客](https://mattwang44.github.io/en/articles/PyTorchTP-AlexNet/)，本文中的内容也对其进行了较多的参考，在此表示感谢。
 
 ### Dropout
 
