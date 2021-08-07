@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.jpg">
+  <link rel="mask-icon" href="/images/logo.jpg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="ZdvyzyhpcdlTDpGbsFgoJKwe2gy1mIg0F_JCMMnyKpA">
+  <meta name="msvalidate.01" content="4B0BA7963734443A883E3EFB59898EDF">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://xinpingwang.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="在 LeNet 提出后的很长一段时间里，基于神经网络的图像分类算法一度被其他机器学习方法超越，这类图像分类算法使用手工设计的特征提取算法从图像上提取特征，然后使用机器学习模型对图像的特征进行分类。而有些研究者则坚持认为，特征本身也应该是学习得到的，但是很长一段时间里这样的野心都不能实现，这其中可能有许多因素，但最主要的两个就是：数据和硬件。终于，这两个问题在 2010 年前后得到改善：2009 年">
+<meta property="og:type" content="article">
+<meta property="og:title" content="AlexNet：开启卷积神经网络的新时代">
+<meta property="og:url" content="https://xinpingwang.github.io/2019/12/15/alexnet/index.html">
+<meta property="og:site_name" content="小新的黑板报">
+<meta property="og:description" content="在 LeNet 提出后的很长一段时间里，基于神经网络的图像分类算法一度被其他机器学习方法超越，这类图像分类算法使用手工设计的特征提取算法从图像上提取特征，然后使用机器学习模型对图像的特征进行分类。而有些研究者则坚持认为，特征本身也应该是学习得到的，但是很长一段时间里这样的野心都不能实现，这其中可能有许多因素，但最主要的两个就是：数据和硬件。终于，这两个问题在 2010 年前后得到改善：2009 年">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://xinpingwang.github.io/2019/12/15/alexnet/alexnet_arch.png">
+<meta property="og:image" content="https://xinpingwang.github.io/2019/12/15/alexnet/relu_vs_tanh.png">
+<meta property="og:image" content="https://xinpingwang.github.io/2019/12/15/alexnet/alexnet_all_in_one.png">
+<meta property="og:image" content="https://xinpingwang.github.io/2019/12/15/alexnet/lrn.gif">
+<meta property="article:published_time" content="2019-12-15T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-07T00:28:15.208Z">
+<meta property="article:author" content="小新">
+<meta property="article:tag" content="AlexNet">
+<meta property="article:tag" content="CNN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://xinpingwang.github.io/2019/12/15/alexnet/alexnet_arch.png">
+
+<link rel="canonical" href="https://xinpingwang.github.io/2019/12/15/alexnet/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>AlexNet：开启卷积神经网络的新时代 | 小新的黑板报</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168225861-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-168225861-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小新的黑板报</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">因为相信，所以看见</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/12/15/alexnet/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小新">
+      <meta itemprop="description" content="记录工作、学习和生活中的点点滴滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小新的黑板报">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          AlexNet：开启卷积神经网络的新时代
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-12-15 00:00:00" itemprop="dateCreated datePublished" datetime="2019-12-15T00:00:00+00:00">2019-12-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-07 00:28:15" itemprop="dateModified" datetime="2021-08-07T00:28:15+00:00">2021-08-07</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/12/15/alexnet/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/12/15/alexnet/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>在 LeNet 提出后的很长一段时间里，基于神经网络的图像分类算法一度被其他机器学习方法超越，这类图像分类算法使用手工设计的特征提取算法从图像上提取特征，然后使用机器学习模型对图像的特征进行分类。而有些研究者则坚持认为，特征本身也应该是学习得到的，但是很长一段时间里这样的野心都不能实现，这其中可能有许多因素，但最主要的两个就是：<strong>数据</strong>和<strong>硬件</strong>。终于，这两个问题在 2010 年前后得到改善：2009 年，由李飞飞主导的 <a target="_blank" rel="noopener" href="http://www.image-net.org/">ImageNet</a> 数据集诞生了；而且，GPU 也在 2010 年前后开始应用于机器学习。</p>
+<p><escape><span id="more"></span></escape></p>
+<p>2012 年，在 Florence 举办的那届 ECCV 上，ImageNet 的 Workshop 比较有趣，由于 Hinton 团队的 AlexNet 在 ImageNet 比赛中遥遥领先，所有的人都在等待他的学生 Alex Krizhevsky 的演讲，大家应该可以想象那种万众瞩目的场景。</p>
+<blockquote>
+<p>下面这两个链接分别是吴恩达（Andrew Ng）采访 Hinton 时，Hinton 对那个 Workshop 的描述，和 Alex 在 Workshop 上演讲的 PPT：</p>
+<p><a target="_blank" rel="noopener" href="https://youtu.be/Svb1c6AkRzE?t=1192">https://youtu.be/Svb1c6AkRzE?t=1192</a></p>
+<p><a target="_blank" rel="noopener" href="http://image-net.org/challenges/LSVRC/2012/supervision.pdf">http://image-net.org/challenges/LSVRC/2012/supervision.pdf</a></p>
+</blockquote>
+<p>下面，我们一起来研究一下将卷积神经网络带上「神坛」的  AlexNet 是如何设计的。</p>
+<h2 id="网络结构">网络结构</h2>
+<img src="/2019/12/15/alexnet/alexnet_arch.png" class="" title="[AlexNet 网络结构]">
+<p>上图是 AlexNet 的网络结构，其参数数量超多了 6 千万个，是 LeNet 1000 倍。但是，从总体上看，AlexNet 与 LeNet 还是比较相似，都是先通过卷积神经网络提取特征，然后，由多层感知机根据特征对图像进行分类，所以，论文中作者只花了一点篇幅来描述网络中每一层的输入输出，将重点放在如何加快模型的训练速度和降低过拟合。</p>
+<p>需要注意的一点是，在 AlexNet 中采用了 <strong>Overlapping Pooling</strong>：在 LeNet 中，降采样层的步长和核大小是一致的，也就是说在滑动过程中不会有重叠的部分，AlexNet 中步长小于池化核的大小，作者认为这样可以减少池化过程中信息的损失量。</p>
+<h2 id="提升训练速度">提升训练速度</h2>
+<h3 id="ReLU">ReLU</h3>
+<p>对神经元建模的标准形式是 sigmoid，即 $f(x)=tanh(x)$ 或者 $f(x)=(1+e^{-x})^{-1}$，但是，从训练时间的角度来说，这些<strong>饱和</strong>（saturating）非线性函数比<strong>不饱和</strong>（non-saturating）非线性函数 （如：ReLU，$f(x)=max(0,x)$ ）慢许多，尤其是在深度卷积神经网络上。</p>
+<img src="/2019/12/15/alexnet/relu_vs_tanh.png" class="" title="[ReLU 和 tanh 训练速度对比]">
+<p>上图是分别使用 ReLU 和 tanh 作为激活函数时，一个 4 层卷积神经网络在 CIFAR-10 上训练速度的对比，从图中可见，使用 ReLU 作为激活函数的模型快了将近 6 倍。</p>
+<h3 id="多-GPU-训练">多 GPU 训练</h3>
+<p>由于 AlexNet 中的参数过多，而 GTX 580 GPU 仅有 3GB 的显存，AlexNet 采用两张 GPU 分两路运算。为此，作者还实现了针对 GPU 高度优化的二维卷积和其他训练中所必需的操作。相关代码作者已经开源，可以在 Google Code 上获取：<a target="_blank" rel="noopener" href="http://code.google.com/p/cuda-convnet/%E3%80%82">http://code.google.com/p/cuda-convnet/。</a></p>
+<p>如果将 GPU 内存足够，可以将 AlexNet 合为一路，这时，网络的结构将是下图这样：</p>
+<img src="/2019/12/15/alexnet/alexnet_all_in_one.png" class="" title="[AlexNet 网络结构]">
+<h2 id="降低过拟合">降低过拟合</h2>
+<h3 id="数据增强">数据增强</h3>
+<p>对于图像数据，通过标签不变的变换来扩增数据集是最简单和常用的降低模型过拟合的方式。论文使用了如下两种方法来增加数据</p>
+<ol>
+<li>
+<p>翻转和裁剪（Reflection &amp; Extracting）</p>
+<p><strong>训练时：</strong> 从预处理得到的 256x256 的图像上依次切出 1024 张 224x224 的图，将这些图及它们的水平翻转作为训练数据，这使得训练数据集扩增了 2048 倍。</p>
+<p><strong>测试时：</strong> 从测试图像上提取 5 张 224x224 的图（4 个角，以及正中间），以及它们的水平翻转，取模型对这 10 张图输出的 softmax 的平均值作为对原图的判断结果。</p>
+</li>
+<li>
+<p>PCA</p>
+<p>首先，在整个 ImageNet 数据集上，对图像的 RGB 像素值集进行主成分分析；然后，对每张训练图像添加多个主成分：大小与相应的特征值<em>乘以均值为 0 且标准偏差为 0.1 的高斯随机变量</em>成比例。即：<br>
+$$<br>
+I_{xy}^\prime=[I_{xy}^R,I_{xy}^G,I_{xy}^B] + [p_1,p_2,p_3][\alpha_1\lambda_1,\alpha_2\lambda_2,\alpha_2\lambda_2]<br>
+$$<br>
+式中，$p_i$ 和 $\lambda_i$ 是该像素值的 3x3 协方差矩阵的第 $i$ 个特征向量和特征值，$\alpha_i$ 是前述的随机变量。这个变换体现了自然图像的一个重要属性，即：图像的标签，在不同亮度和颜色下是不变的，降低了 1% 以上的 top-1 错误率。</p>
+</li>
+</ol>
+<h3 id="局部响应归一化">局部响应归一化</h3>
+<p>作者发现，下面的局部响应归一化有利于模型的泛化，使得 AlexNet 在 ImageNet 数据集上的 top-1 和 top-5 错误率分别降低了 1.4% 和 1.2%，此外，作者还在 CIFAR-10 数据集上的测试了该方法的有效性，对比没有使用归一化的四层 CNN，测试错误率从 13% 降低到了 11%。<br>
+$$<br>
+b_{x,y}^i=a_{x,y}^i/\left(k+\alpha\sum\limits_{j=max(0,i-n/2)}^{min(N-1,i+n/2)}(a_{x,y}^j)^2\right)^\beta<br>
+$$<br>
+式中：</p>
+<ul>
+<li>$a_{x,y}^i$ 是 $x,y$ 位置上原本的卷积输出</li>
+<li>$b_{x,y}^i$ 是 LRN 的输出值，作为下一层的输入</li>
+<li>N 是该层卷积核的通道数</li>
+<li>n 是要做加总运算的邻近卷积核数量，是一个超参数</li>
+<li>$k,\alpha,\beta$ 均是超参数，论文中选用的是 $k=2,\alpha=10^{-4},\beta=0.75$。</li>
+</ul>
+<p>公式中看起来比较复杂的求和，其实就是将临近 n 个 feature maps 上相同位置的值做平方和，示意图如下：</p>
+<img src="/2019/12/15/alexnet/lrn.gif" class="" title="[LRN 计算示意图]">
+<blockquote>
+<p>图片来自，<a target="_blank" rel="noopener" href="https://mattwang44.github.io/en/articles/PyTorchTP-AlexNet/">WEI-HSIANG WANG 的博客</a>，本文中的内容也对其进行了较多的参考，在此表示感谢。</p>
+</blockquote>
+<h3 id="Dropout">Dropout</h3>
+<p>所谓 Dropout 就是按照一定的概率（0.5）将「神经元」的输出置为 0，这部分输出置 0 的「神经元」在前向传播中对于整个模型的输出来说没有任何贡献，并且也不会参与反向传播。那么这部分神经元存在的价值是什么呢，或者说为什么 Dropout 可以降低模型的过拟合？</p>
+<ul>
+<li>将多个模型的预测结果结合起来作出判断，是一个非常成功的降低测试错误率的方法，但是，对于一个需要好多天才能完成训练的大型网络来说，显得成本比较高。Dropout 相对而言就是一个非常高效的方式了：在训练过程中，按照 0.5 的概率将模型中「神经元」的输出置 0，相当于每次只有一半的模型参与了预测；而在测试中，整个模型都会参与预测，整个模型就相当于两个小模型的结合。</li>
+<li>还有一种解释是，训练时模型中的每个「神经元」的输出都有可能置 0，可以避免模型过多的依赖某个（些）「神经元」的输出。</li>
+</ul>
+<p>AlexNet 模型中的前两个全联接层加上了 Dropout，有效避免了过拟合，但是，也使得收敛所需的迭代次数增加了 1 倍。</p>
+<h2 id="训练细节">训练细节</h2>
+<h3 id="参数初始化">参数初始化</h3>
+<ul>
+<li>权重：均值为 0 标准差为 0.01 的高斯分布</li>
+<li>偏差：
+<ul>
+<li>1 (at 2nd, 4th, 5th and fc layers), 使得训练的前期，ReLU 的输入为正值，加速模型的训练；</li>
+<li>0 (at other layers)</li>
+</ul>
+</li>
+</ul>
+<h3 id="随机梯度下降">随机梯度下降</h3>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">batch_size=<span class="number">128</span>, momentum=<span class="number">0.9</span>, weight_decay=<span class="number">0.00005</span></span><br><span class="line">learning_rate=<span class="number">0.01</span> <span class="comment">#若测试错误率不再下降则除以 10</span></span><br></pre></td></tr></table></figure>
+<p>权重 $w_i$ 的更新规则：<br>
+$$<br>
+\begin{align}<br>
+v_{i+1} &amp;:= 0.9 \cdot v_i-0.0005 \cdot \epsilon \cdot w_i-\epsilon \cdot \left\langle\frac{\partial L}{\partial w}|_{w_i}\right\rangle_{D_i} \\<br>
+w_{i+1} &amp;:= w_i+v_{i+1}<br>
+\end{align}<br>
+$$</p>
+<h2 id="算法复现">算法复现</h2>
+<p>同样的，笔者使用 PyTorch 对 AlexNet 进行了复现，源码发布在 <a target="_blank" rel="noopener" href="https://github.com/xinpingwang/paper-with-code/tree/master/alexnet">GitHub</a> 上。</p>
+<h2 id="参考资料">参考资料</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf">ImageNet Classiﬁcation with Deep Convolutional Neural Networks</a></li>
+<li><a target="_blank" rel="noopener" href="http://image-net.org/challenges/LSVRC/2012/supervision.pdf">Alex Krizhevsky 在 ImageNet Workshop, ECCV 2012 上的演讲</a></li>
+<li><a target="_blank" rel="noopener" href="https://youtu.be/Svb1c6AkRzE?t=1192">吴恩达（Andrew Ng）对 Hinton 的专访</a></li>
+<li><a target="_blank" rel="noopener" href="https://mattwang44.github.io/en/articles/PyTorchTP-AlexNet/">PyTorch Taipei 2018 week1: AlexNet</a></li>
+</ul>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>小新
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xinpingwang.github.io/2019/12/15/alexnet/" title="AlexNet：开启卷积神经网络的新时代">https://xinpingwang.github.io/2019/12/15/alexnet/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/AlexNet/" rel="tag"># AlexNet</a>
+              <a href="/tags/CNN/" rel="tag"># CNN</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/12/08/lenet/" rel="prev" title="LeNet 论文阅读及复现">
+      <i class="fa fa-chevron-left"></i> LeNet 论文阅读及复现
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/27/disable-ssl-verification-for-rest-template/" rel="next" title="【转】RestTemplate 禁用 SSL 证书验证">
+      【转】RestTemplate 禁用 SSL 证书验证 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%90%E5%8D%87%E8%AE%AD%E7%BB%83%E9%80%9F%E5%BA%A6"><span class="nav-number">2.</span> <span class="nav-text">提升训练速度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReLU"><span class="nav-number">2.1.</span> <span class="nav-text">ReLU</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A-GPU-%E8%AE%AD%E7%BB%83"><span class="nav-number">2.2.</span> <span class="nav-text">多 GPU 训练</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%8D%E4%BD%8E%E8%BF%87%E6%8B%9F%E5%90%88"><span class="nav-number">3.</span> <span class="nav-text">降低过拟合</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E5%A2%9E%E5%BC%BA"><span class="nav-number">3.1.</span> <span class="nav-text">数据增强</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B1%80%E9%83%A8%E5%93%8D%E5%BA%94%E5%BD%92%E4%B8%80%E5%8C%96"><span class="nav-number">3.2.</span> <span class="nav-text">局部响应归一化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dropout"><span class="nav-number">3.3.</span> <span class="nav-text">Dropout</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E7%BB%86%E8%8A%82"><span class="nav-number">4.</span> <span class="nav-text">训练细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%82%E6%95%B0%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="nav-number">4.1.</span> <span class="nav-text">参数初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D"><span class="nav-number">4.2.</span> <span class="nav-text">随机梯度下降</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95%E5%A4%8D%E7%8E%B0"><span class="nav-number">5.</span> <span class="nav-text">算法复现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小新</p>
+  <div class="site-description" itemprop="description">记录工作、学习和生活中的点点滴滴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xinpingwang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xinpingwang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:xinping.wang@hotmail.com" title="E-Mail → mailto:xinping.wang@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小新</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">26k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">44 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+      
+<script type="text/x-mathjax-config">
+    MathJax.Ajax.config.path['mhchem'] = '//cdn.jsdelivr.net/npm/mathjax-mhchem@3';
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+        extensions: ['[mhchem]/mhchem.js'],
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
+      }
+    });
+  });
+
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
+    }
+  });
+</script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script>
+
+    
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://xinping-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://xinpingwang.github.io/2019/12/15/alexnet/",
+            identifier: "2019/12/15/alexnet/",
+            title: "AlexNet：开启卷积神经网络的新时代"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://xinping-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.jpg">
+  <link rel="mask-icon" href="/images/logo.jpg" color="#222">
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+  <meta name="google-site-verification" content="ZdvyzyhpcdlTDpGbsFgoJKwe2gy1mIg0F_JCMMnyKpA">
+  <meta name="msvalidate.01" content="4B0BA7963734443A883E3EFB59898EDF">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('https://xinpingwang.github.io').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":true,"show_result":true,"style":"flat"},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: '',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="随着机器学习和数据分析变得越来越热门，Python 作为一门解释型和动态类型语言，很好的顺应了这一潮流，成为最流行的语言之一。 解释型语言的主要特点就是执行代码之前不需要编译，利用 Jupyter Notebook 等交互式的工具，可以方便快速的测试一些想法；而动态类型可以摆脱严格的继承关系或接口实现的束缚，简化程序的设计或实现。本文主要谈一下对动态类型的理解，以及类型提示的作用和重要性。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 动态类型以及类型提示">
+<meta property="og:url" content="https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/index.html">
+<meta property="og:site_name" content="小新的黑板报">
+<meta property="og:description" content="随着机器学习和数据分析变得越来越热门，Python 作为一门解释型和动态类型语言，很好的顺应了这一潮流，成为最流行的语言之一。 解释型语言的主要特点就是执行代码之前不需要编译，利用 Jupyter Notebook 等交互式的工具，可以方便快速的测试一些想法；而动态类型可以摆脱严格的继承关系或接口实现的束缚，简化程序的设计或实现。本文主要谈一下对动态类型的理解，以及类型提示的作用和重要性。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-01T00:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-07T00:28:15.224Z">
+<meta property="article:author" content="小新">
+<meta property="article:tag" content="Python">
+<meta property="article:tag" content="动态类型">
+<meta property="article:tag" content="类型提示">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Python 动态类型以及类型提示 | 小新的黑板报</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-168225861-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-168225861-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">小新的黑板报</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">因为相信，所以看见</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小新">
+      <meta itemprop="description" content="记录工作、学习和生活中的点点滴滴">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="小新的黑板报">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Python 动态类型以及类型提示
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-01 00:00:00" itemprop="dateCreated datePublished" datetime="2019-11-01T00:00:00+00:00">2019-11-01</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-08-07 00:28:15" itemprop="dateModified" datetime="2021-08-07T00:28:15+00:00">2021-08-07</time>
+              </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/2019/11/01/python-dynamic-type-and-type-hints/#comments" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/11/01/python-dynamic-type-and-type-hints/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>4 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>随着机器学习和数据分析变得越来越热门，Python 作为一门<strong>解释型</strong>和<strong>动态类型</strong>语言，很好的顺应了这一潮流，成为最流行的语言之一。 解释型语言的主要特点就是执行代码之前不需要编译，利用 <a target="_blank" rel="noopener" href="https://jupyter.org/">Jupyter Notebook</a> 等交互式的工具，可以方便快速的测试一些想法；而动态类型可以摆脱严格的继承关系或接口实现的束缚，简化程序的设计或实现。本文主要谈一下对动态类型的理解，以及类型提示的作用和重要性。</p>
+<p><escape><span id="more"></span></escape></p>
+<h2 id="动态类型">动态类型</h2>
+<h3 id="变量的类型？">变量的类型？</h3>
+<p>在 Python 语言中，变量不需要指定类型，甚至可以随时赋值为其它类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a)  <span class="comment"># hello world</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">8</span></span><br><span class="line"><span class="built_in">print</span>(a)  <span class="comment"># 8</span></span><br></pre></td></tr></table></figure>
+<p>这是不是意味着，Python 中没有类型呢？答案显然是否定的。因为，初学 Python 时，首先，接触的就是数据类型，Python 为我们提供了布尔、数字（int，float 和 complex）、序列（list、tuple 和 range）、字符序列（str）、二进制序列（bytes、bytearray 和 memoryview）、集合（set）和字典（dict）等类型（参见 Python 文档中<a target="_blank" rel="noopener" href="https://docs.python.org/3/library/stdtypes.html">内置类型</a>一节）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;hello world&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(a.split(<span class="string">&#x27; &#x27;</span>))  <span class="comment"># [&#x27;hello&#x27;, &#x27;world&#x27;]</span></span><br><span class="line"></span><br><span class="line">a = <span class="number">8</span></span><br><span class="line"><span class="built_in">print</span>(a.split(<span class="string">&#x27; &#x27;</span>))  <span class="comment"># AttributeError: &#x27;int&#x27; object has no attribute &#x27;split&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>如果尝试执行上面的代码，会发现第 2 行可以正常执行，而第 5 行则会发生 <code>AttributeError</code> 错误。那么该如何理解这一现象呢？我总结了下面这句话（不记得哪里看到的了 🤔）：<strong>变量没有类型，但是数据是有类型的</strong>，变量的行为由其指向的数据所决定。</p>
+<h3 id="鸭子-🦆-类型">鸭子 🦆 类型</h3>
+<p>所谓的鸭子类型来源于鸭子测试，即：“当看到一致鸟<strong>走</strong>起来像鸭子、<strong>游泳</strong>的时候像鸭子、<strong>叫</strong>起来也像鸭子，那么这只鸟就可以被称为鸭子”。可以看到，在鸭子类型中，关注点在于对象的行为，而不是对象所属的类型。用专业一点的术语来说就是：一个对象的有效语意是由其方法和属性的集合决定的，而不是继承特定的类或实现特定的接口。</p>
+<p>下面用一个例子来说明鸭子类型：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Duck</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;a duck is running&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;a duck is swimming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quack</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;嘎嘎嘎&#x27;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bird</span>(<span class="params"><span class="built_in">object</span></span>):</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;a bird is running&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">swim</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;a bird is swimming&#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">quack</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;唧唧唧&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<p>上面定义了 <code>Duck</code> 和 <code>Bird</code> 两种类型，都继承自 <code>object</code>，互相之间没有继承关系，但是都定义了 <code>run</code>、<code>swim</code> 和 <code>quack</code> 三个方法，如果将 <code>Duck</code> 和 <code>Bird</code> 的实例传入下面的 <code>duckTest</code> 函数，程序都可以正常运行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">duckTest</span>(<span class="params">duck</span>):</span></span><br><span class="line">    duck.run()</span><br><span class="line">    duck.swim()</span><br><span class="line">    duck.quack()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">bird = Bird()</span><br><span class="line">duckTest(bird)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a bird <span class="keyword">is</span> running</span><br><span class="line">a bird <span class="keyword">is</span> swimming</span><br><span class="line">唧唧唧</span><br><span class="line"></span><br><span class="line">duck = Duck()</span><br><span class="line">duckTest(duck)</span><br><span class="line"><span class="meta">&gt;&gt;&gt; </span>a duck <span class="keyword">is</span> running</span><br><span class="line">a duck <span class="keyword">is</span> swimming</span><br><span class="line">嘎嘎嘎</span><br></pre></td></tr></table></figure>
+<h2 id="类型提示">类型提示</h2>
+<p>动态类型为程序设计带来了极大的便利性，同时，也向程序员提出了更高的要求，即：在编写程序时，必须很好地理解项目中的每一行代码。虽然，每个程序员应该具备这样的能力，或者说应该做到，但是，随着项目中代码量的增大，这一点会变得越来越难。相信大家在使用 Python 编程的时候都遇到过下面这两个问题：</p>
+<ol>
+<li><strong>函数的参数类型</strong>：在定义一个方法时，我们不需要<strong>显示</strong>指出参数的类型，但是，我们在方法中对该参数进行的所有操作实际上都是基于某一类型设计的，如果传入参数的不符合这一预期，程序将会出现错误。可以说该类型存在与函数设计者的脑子里，而使用者需要阅读文档或者查看源码才知道如何传入一个恰当的值。</li>
+<li><strong>代码补全</strong>：<code>IDE</code> 的一个核心功能就是代码提示，但是，由于方法定义时没有指出参数的类型，<code>IDE</code> 只能根据上下文进行一些推测，导致代码提示不准确或者说根本无法进行提示。</li>
+</ol>
+<p>类型提示就是为了解决这个问题，<a target="_blank" rel="noopener" href="https://www.python.org/dev/peps/pep-0484/">PEP 484</a> 对类型提示进行了详细的描述。下面是一个加入类型提示的方法定义的示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">greeting</span>(<span class="params">name: <span class="built_in">str</span></span>) -&gt; <span class="built_in">str</span>:</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;Hello &#x27;</span> + name</span><br></pre></td></tr></table></figure>
+<p>代码中的类型标注可以帮助我们解决上面提到的两个问题，并且，Python 并不会在函数执行的时候对参数的类型进行校验，所以丝毫不影响原来代码的执行。此外，借助 <a target="_blank" rel="noopener" href="https://github.com/python/mypy">mypy</a> 或 <a target="_blank" rel="noopener" href="https://github.com/microsoft/pyright">pyright</a> 等静态类型分析工具还可以帮助我们发现程序中潜在的一些问题。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>小新
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/" title="Python 动态类型以及类型提示">https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Python/" rel="tag"># Python</a>
+              <a href="/tags/%E5%8A%A8%E6%80%81%E7%B1%BB%E5%9E%8B/" rel="tag"># 动态类型</a>
+              <a href="/tags/%E7%B1%BB%E5%9E%8B%E6%8F%90%E7%A4%BA/" rel="tag"># 类型提示</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/10/22/first-line-of-code/" rel="prev" title="第一行代码">
+      <i class="fa fa-chevron-left"></i> 第一行代码
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/12/04/standardize-vs-normalize/" rel="next" title="标准化 vs 归一化">
+      标准化 vs 归一化 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">动态类型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8F%98%E9%87%8F%E7%9A%84%E7%B1%BB%E5%9E%8B%EF%BC%9F"><span class="nav-number">1.1.</span> <span class="nav-text">变量的类型？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%B8%AD%E5%AD%90-%F0%9F%A6%86-%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">鸭子 🦆 类型</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B1%BB%E5%9E%8B%E6%8F%90%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">类型提示</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小新</p>
+  <div class="site-description" itemprop="description">记录工作、学习和生活中的点点滴滴</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/xinpingwang" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;xinpingwang" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:xinping.wang@hotmail.com" title="E-Mail → mailto:xinping.wang@hotmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小新</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    <span title="站点总字数">26k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">44 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://xinping-blog.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: {page: {
+            url: "https://xinpingwang.github.io/2019/11/01/python-dynamic-type-and-type-hints/",
+            identifier: "2019/11/01/python-dynamic-type-and-type-hints/",
+            title: "Python 动态类型以及类型提示"
+          }
+        }
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://xinping-blog.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
